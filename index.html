@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>灵频回响 - 赫兹睡眠 x 超然回声</title>
+    <style>
+        :root {
+            --primary-bg: #0f172a;
+            --secondary-bg: #1e293b;
+            --accent-color: #8b5cf6; /* 紫色灵动感 */
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --gold: #d4af37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* 头部导航 */
+        header {
+            background: rgba(15, 23, 42, 0.9);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .company-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        /* Hero 区域 */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #2e1065 0%, #0f172a 70%);
+            padding-top: 60px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 3s infinite;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, var(--accent-color), #6366f1);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4);
+        }
+
+        /* 产品介绍部分 */
+        .section {
+            padding: 80px 0;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .card {
+            background: var(--secondary-bg);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .feature-list li {
+            margin-bottom: 15px;
+            list-style: none;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-size: 1.5em;
+            line-height: 1;
+        }
+
+        /* 技术合作伙伴区域 (BeyondEcho) */
+        .partner-section {
+            background-color: #fff; /* 白色背景突出Logo */
+            color: #333;
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .partner-label {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .partner-logo-container {
+            margin-bottom: 30px;
+        }
+
+        .partner-logo-img {
+            max-width: 300px;
+            height: auto;
+        }
+
+        .partner-info {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .partner-name {
+            font-family: "Times New Roman", serif; /* 匹配Logo风格 */
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .partner-address {
+            font-size: 1rem;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        /* 底部 Footer */
+        footer {
+            background: #020617;
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-info h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .contact-item {
+            margin-bottom: 10px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-label {
+            font-weight: bold;
+            color: var(--text-color);
+            min-width: 80px;
+        }
+
+        .copyright {
+            text-align: center;
+            color: #64748b;
+            font-size: 0.9rem;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; text-shadow: 0 0 20px rgba(167, 139, 250, 0.5); }
+            100% { opacity: 0.8; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部导航 -->
+    <header>
+        <div class="container nav-content">
+            <div class="company-name">赫兹睡眠 HERTZ SLEEP</div>
+            <div style="font-size: 0.9rem; color: var(--text-muted);">400-136-8313</div>
+        </div>
+    </header>
+
+    <!-- 主视觉区域 -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>灵频回响</h1>
+            <p>连接内在深处的宁静 · 开启睡眠新维度</p>
+            <!-- 3. 需要放上灵频回响的链结 -->
+            <a href="https://your-product-link.com" target="_blank" class="cta-button">立即体验灵频回响</a>
+            <p style="font-size: 0.8rem; margin-top: 15px; opacity: 0.6;">点击上方按钮进入体验</p>
+        </div>
+    </section>
+
+    <!-- 2. 产品介绍与说明 -->
+    <section class="section">
+        <div class="container">
+            <div class="grid-2">
+                <div class="card">
+                    <h2 class="section-title">什么是灵频回响？</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">
+                        “灵频回响”是一款基于神经声学原理开发的深度助眠与冥想音频系统。通过特定的赫兹频率（Hertz Frequency），与大脑皮层产生共振，引导脑波从活跃的Beta波平缓过渡至放松的Alpha波及深度睡眠的Delta波。
+                    </p>
+                    <p style="color: var(--text-muted);">
+                        它不仅仅是声音，更是一种能量的“回响”，帮助您在喧嚣的都市中找回内心的频率。
+                    </p>
+                </div>
+                <div class="card">
+                    <h2 class="section-title">使用方法</h2>
+                    <ul class="feature-list" style="color: var(--text-muted);">
+                        <li><strong>佩戴设备：</strong>建议使用立体声耳机以获得最佳的双耳节拍效果。</li>
+                        <li><strong>环境准备：</strong>选择一个安静、光线柔和的房间，保持身体舒适放松。</li>
+                        <li><strong>启动回响：</strong>点击体验链接，选择适合您当前状态的频率模式（助眠/冥想/专注）。</li>
+                        <li><strong>沉浸体验：</strong>闭上双眼，调整呼吸，让灵频声音引导您的意识自然流动。</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. & 5. 技术合作伙伴区域 (BeyondEcho) -->
+    <section class="partner-section">
+        <div class="container">
+            <p class="partner-label">Strategic Technical Partner / 战略技术合作伙伴</p>
+            
+            <div class="partner-logo-container">
+                <!-- 这里请将您的LOGO图片保存为 'logo.png' 并放在同一目录下，或者修改src为您图片的URL -->
+                <!-- 如果图片无法显示，会显示alt文字 -->
+                <img src="logo.png" alt="BEYONDECHO PTE. LTD. LOGO" class="partner-logo-img">
+            </div>
+
+            <div class="partner-info">
+                <div class="partner-name">超然回聲 BEYONDECHO PTE. LTD.</div>
+                <div class="partner-address">
+                    <strong>Address:</strong><br>
+                    346C KING GEORGE'S AVENUE, KING GEORGE'S BUILDING,<br>
+                    SINGAPORE 208577
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1. 底部公司信息 -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <h3>赫兹睡眠（上海）科技有限公司</h3>
+                    <div class="contact-item">
+                        <span class="contact-label">地址：</span>
+                        <span>上海徐汇区虹漕路68号锦和中心11楼</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">电话：</span>
+                        <span>400-136-8313</span>
+                    </div>
+                </div>
+                <div class="footer-info">
+                    <h3>关于我们</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">
+                        赫兹睡眠致力于利用前沿声学科技改善人类睡眠质量。我们相信，好的睡眠是健康生活的基石。
+                    </p>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2024 Hertz Sleep (Shanghai) Technology Co., Ltd. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
